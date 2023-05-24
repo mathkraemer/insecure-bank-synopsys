@@ -16,7 +16,7 @@ jobs:
         
       - name: Coverity Full Scan
         if: ${{ github.event_name != 'pull_request' }}
-        uses: synopsys-sig/synopsys-action@v1.1.0
+        uses: synopsys-sig/synopsys-action@v1.2.0
         with:
           coverity_url: ${{ secrets.COVERITY_URL }}
           coverity_user: ${{ secrets.COVERITY_USER }}
@@ -26,7 +26,7 @@ jobs:
           coverity_policy_view: 10008 # viewID for Outstanding Issues
       - name: Coverity PR Scan
         if: ${{ github.event_name == 'pull_request' }}
-        uses: synopsys-sig/synopsys-action@v1.1.0
+        uses: synopsys-sig/synopsys-action@v1.2.0
         with:
           coverity_url: ${{ vars.COVERITY_URL }}
           coverity_user: ${{ secrets.COVERITY_USER }}
