@@ -14,20 +14,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         
-      - name: Synopsys Action
-        uses: synopsys-sig/synopsys-action@v1.2.0
+      - name: Coverity Full Scan
+        if: ${{ github.event_name != 'pull_request' }}
+        uses: synopsys-sig/synopsys-action@v1.1.0
         with:
           coverity_url: ${{ secrets.COVERITY_URL }}
           coverity_user: ${{ secrets.COVERITY_USER }}
           coverity_passphrase: ${{ secrets.COVERITY_PASSPHRASE }}
-          # Many customers prefer to set their Coverity project and stream names to match
-          # the GitHub repository name
-          coverity_project_name: ${{ secrets.COVERITY_PROJECT_NAME }}
-          coverity_stream_name: ${{ github.event.repository.name }}
+          coverity_project_name: ${{ github.event.repository.name }}
+          coverity_stream_name: ${{ github.event.repository.name }}-${{ github.ref_name }}
+          coverity_policy_view: 10008 # viewID for Outstanding Issues
+      - name: Coverity PR Scan
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: synopsys-sig/synopsys-action@v1.1.0
+        with:
+          coverity_url: ${{ vars.COVERITY_URL }}
+          coverity_user: ${{ secrets.COVERITY_USER }}
+          coverity_passphrase: ${{ secrets.COVERITY_PASSPHRASE }}
+          coverity_project_name: ${{ github.event.repository.name }}
+          coverity_stream_name: ${{ github.event.repository.name }}-${{ github.base_ref }}
+          coverity_automation_prcomment: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           # Optionally you may specify the ID number of a saved view to apply as a "break the build" policy.
           # If any defects are found within this view when applied to the project, the build will be failed
           # with an exit code.
           #coverity_policy_view: 100001
           # Below fields are optional
-          coverity_repository_name: ${{ secrets.COVERITY_REPOSITORY_NAME }}
-          coverity_branch_name: ${{ secrets.COVERITY_BRANCH_NAME }}
+          #coverity_repository_name: ${{ secrets.COVERITY_REPOSITORY_NAME }}
+          #coverity_branch_name: ${{ secrets.COVERITY_BRANCH_NAME }}
