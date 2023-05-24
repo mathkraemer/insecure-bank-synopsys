@@ -126,4 +126,13 @@ public class ActivityController {
 		}
 	}
 
+	public int hasValue2(String value){
+		if (value == null){
+			String lval = value.toLowerCase();
+			return Integer.parseInt(lval);
+		} else {
+			return -1;
+		}
+	}
+
 }
