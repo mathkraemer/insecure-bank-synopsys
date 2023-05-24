@@ -117,4 +117,13 @@ public class ActivityController {
 		return "accountActivity";
 	}
 
+	public int checkValue(String value){
+		if (value == null){
+			String lval = value.toLowerCase();
+			return Integer.parseInt(lval);
+		} else {
+			return -1;
+		}
+	}
+
 }
