@@ -119,7 +119,8 @@ public class ActivityController {
 
 	public int hasValue(String value){
 		if (value == null){
-			return Integer.parseInt(value.toString());
+			String lval = value.toLowerCase();
+			return Integer.parseInt(lval);
 		} else {
 			return -1;
 		}
