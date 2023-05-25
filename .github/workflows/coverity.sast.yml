@@ -7,6 +7,9 @@ on:
   pull_request:
     branches: [ master, main ]
 
+env:
+  GITHUB_API_URL: https://api.github.com
+
 jobs:
   build:
     runs-on: self-hosted
@@ -25,8 +28,6 @@ jobs:
           coverity_stream_name: ${{ github.event.repository.name }}-${{ github.ref_name }}
           coverity_policy_view: 10008 # viewID for Outstanding Issues
       - name: Coverity PR Scan
-        env:
-          GITHUB_API_URL: https://api.github.com
         if: ${{ github.event_name == 'pull_request' }}
         uses: synopsys-sig/synopsys-action@v1.2.0
         with:
