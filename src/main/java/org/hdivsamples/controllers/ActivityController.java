@@ -121,7 +121,7 @@ public class ActivityController {
 		if (null == rangeValue){
 			return Integer.parseInt(rangeValue.toLowerCase());
 		} else {
-			return -1;
+			return -2;
 		}
 	}
 
