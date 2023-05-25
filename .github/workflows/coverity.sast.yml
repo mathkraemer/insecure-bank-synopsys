@@ -10,8 +10,8 @@ on:
 jobs:
   build:
     runs-on: self-hosted
-    env:
-      GITHUB_API_URL: https://api.github.com
+    #env:
+      #GITHUB_API_URL: https://api.github.com
     steps:
       - name: Checkout
         uses: actions/checkout@v3
