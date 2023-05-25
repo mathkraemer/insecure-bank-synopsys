@@ -8,6 +8,7 @@ on:
     branches: [ master, main ]
 
 env:
+  # explicit spec of API URL for bridge
   GITHUB_API_URL: https://api.github.com
 
 jobs:
@@ -38,12 +39,5 @@ jobs:
           coverity_stream_name: ${{ github.event.repository.name }}-${{ github.base_ref }}
           coverity_automation_prcomment: true
           github_token: ${{ secrets.PROJECT_GITHUB_TOKEN }}
-          #bridge_github_api_url: https://api.github.com
-          # Optionally you may specify the ID number of a saved view to apply as a "break the build" policy.
-          # If any defects are found within this view when applied to the project, the build will be failed
-          # with an exit code.
           coverity_policy_view: 10008
-          include_diagnostics: true
-          # Below fields are optional
-          #coverity_repository_name: ${{ secrets.COVERITY_REPOSITORY_NAME }}
-          #coverity_branch_name: ${{ secrets.COVERITY_BRANCH_NAME }}
+          include_diagnostics: false
