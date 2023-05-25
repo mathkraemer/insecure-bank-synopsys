@@ -125,4 +125,12 @@ public class ActivityController {
 		}
 	}
 
+	public int convert2(String value){
+		if (null == value){
+			return Integer.parseInt(value.toLowerCase());
+		} else {
+			return -1;
+		}
+	}
+
 }

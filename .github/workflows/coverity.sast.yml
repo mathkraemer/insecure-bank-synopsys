@@ -35,6 +35,7 @@ jobs:
           coverity_stream_name: ${{ github.event.repository.name }}-${{ github.base_ref }}
           coverity_automation_prcomment: true
           github_token: ${{ secrets.PROJECT_GITHUB_TOKEN }}
+          github_api_url: https://api.github.com
           # Optionally you may specify the ID number of a saved view to apply as a "break the build" policy.
           # If any defects are found within this view when applied to the project, the build will be failed
           # with an exit code.
