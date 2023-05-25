@@ -40,6 +40,7 @@ jobs:
           # If any defects are found within this view when applied to the project, the build will be failed
           # with an exit code.
           coverity_policy_view: 10008
+          include_diagnostics: true
           # Below fields are optional
           #coverity_repository_name: ${{ secrets.COVERITY_REPOSITORY_NAME }}
           #coverity_branch_name: ${{ secrets.COVERITY_BRANCH_NAME }}
